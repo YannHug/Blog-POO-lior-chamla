@@ -1,5 +1,8 @@
 <?php
 
+require_once('libraries/utils.php');
+require_once('libraries/database.php');
+
 /**
  * DANS CE FICHIER, ON CHERCHE A SUPPRIMER L'ARTICLE DONT L'ID EST PASSE EN GET
  * 
@@ -22,7 +25,7 @@ $id = $_GET['id'];
  * - Le mode d'erreur : le mode exception permet à PDO de nous prévenir violament quand on fait une connerie ;-)
  * - Le mode d'exploitation : FETCH_ASSOC veut dire qu'on exploitera les données sous la forme de tableaux associatifs
  */
-require_once('libraries/database/pdo.php');
+
 
 $pdo = getPdo();
 
@@ -44,5 +47,4 @@ $query->execute(['id' => $id]);
 /**
  * 5. Redirection vers la page d'accueil
  */
-header("Location: index.php");
-exit();
+redirect('index.php');
