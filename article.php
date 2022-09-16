@@ -1,5 +1,8 @@
 <?php
 
+require_once('libraries/database.php');
+require_once('libraries/utils.php');
+
 /**
  * CE FICHIER DOIT AFFICHER UN ARTICLE ET SES COMMENTAIRES !
  * 
@@ -35,7 +38,7 @@ if (!$article_id) {
  * 
  * PS : Vous remarquez que ce sont les mêmes lignes que pour l'index.php ?!
  */
-require_once('libraries/database.php');
+
 
 $pdo = getPdo();
 
@@ -65,8 +68,15 @@ $commentaires = $query->fetchAll();
  * 5. On affiche 
  */
 $pageTitle = $article['title'];
-ob_start();
-require('templates/articles/show.html.php');
-$pageContent = ob_get_clean();
 
-require('templates/layout.html.php');
+render('articles/show', compact('pageTitle', 'article', 'commentaires', 'article_id'));
+
+/*
+Compact revient à faire ceci :
+    [
+        'pageTitle' => $pageTitle,
+        'article' => $article,
+        'commentaires' => $commentaires,
+        'article_id' => $article_id
+    ]
+*/
