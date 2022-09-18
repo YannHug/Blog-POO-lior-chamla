@@ -2,7 +2,7 @@
 
 namespace Models;
 
-require_once('libraries/database.php');
+require_once("libraries/autoload.php");
 
 abstract class Model
 {
@@ -12,7 +12,7 @@ abstract class Model
 
     public function __construct()
     {
-        $this->pdo = getPdo();
+        $this->pdo = \Database::getPdo();
     }
 
     /**
