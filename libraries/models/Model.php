@@ -1,5 +1,7 @@
 <?php
 
+namespace Models;
+
 require_once('libraries/database.php');
 
 abstract class Model
@@ -24,7 +26,7 @@ abstract class Model
 
         $query = $this->pdo->prepare("SELECT * FROM {$this->table} WHERE id = :id");
 
-        // On exécute la requête en précisant le paramètre :article_id 
+        // On exécute la requête en précisant le paramètre :id 
         $query->execute(['id' => $id]);
 
         // On fouille le résultat pour en extraire les données réelles de l'item
@@ -34,7 +36,7 @@ abstract class Model
     }
 
     /**
-     * Retourne tous les articles
+     * Retourne tous les items
      *
      * @return array
      */
@@ -55,7 +57,7 @@ abstract class Model
     }
 
     /**
-     * Permet la suppression d'un article
+     * Permet la suppression d'un item
      *
      * @param integer $id
      * @return void
