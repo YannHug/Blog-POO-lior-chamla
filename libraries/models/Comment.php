@@ -4,20 +4,8 @@ require_once('libraries/models/Model.php');
 
 class Comment extends Model
 {
-    /**
-     * Recherche un commentaire
-     *
-     * @param integer $id
-     * @return void
-     */
-    public function find(int $id)
-    {
-        $query = $this->pdo->prepare('SELECT * FROM comments WHERE id = :id');
-        $query->execute(['id' => $id]);
 
-        $comment = $query->fetch();
-        return $comment;
-    }
+    protected $table = "comments";
 
     /**
      * Recherche tous les commentaires d'un article
@@ -35,18 +23,6 @@ class Comment extends Model
         $commentaires = $query->fetchAll();
 
         return $commentaires;
-    }
-
-    /**
-     * Supprime un commentaire
-     *
-     * @param integer $id
-     * @return void
-     */
-    public function delete(int $id): void
-    {
-        $query = $this->pdo->prepare('DELETE FROM comments WHERE id = :id');
-        $query->execute(['id' => $id]);
     }
 
     /**

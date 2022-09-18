@@ -13,7 +13,7 @@ $articleModel = new Article;
 /**
  * 2. Récupération des articles
  */
-$articles = $articleModel->findAll();
+$articles = $articleModel->findAll("created_at DESC");
 
 /**
  * 3. Affichage
