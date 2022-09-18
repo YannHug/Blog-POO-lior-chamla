@@ -1,6 +1,6 @@
 <?php
 
-require_once('libraries/controllers/Comment.php');
+require_once("libraries/autoload.php");
 
 /**
  * DANS CE FICHIER ON CHERCHE A SUPPRIMER LE COMMENTAIRE DONT L'ID EST PASSE EN PARAMETRE GET !

@@ -1,6 +1,6 @@
 <?php
 
-require_once('libraries/controllers/Comment.php');
+require_once("libraries/autoload.php");
 
 /**
  * CE FICHIER DOIT ENREGISTRER UN NOUVEAU COMMENTAIRE EST REDIRIGER SUR L'ARTICLE !
