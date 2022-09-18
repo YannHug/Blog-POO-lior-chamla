@@ -2,6 +2,12 @@
 
 require_once('libraries/database.php');
 require_once('libraries/utils.php');
+require_once('libraries/models/Article.php');
+require_once('libraries/models/Comment.php');
+
+$articleModel = new Article;
+$commentModel = new Comment;
+
 
 /**
  * CE FICHIER DOIT AFFICHER UN ARTICLE ET SES COMMENTAIRES !
@@ -30,16 +36,15 @@ if (!$article_id) {
     die("Vous devez préciser un paramètre `id` dans l'URL !");
 }
 
-
 /**
  * 3. Récupération de l'article en question
  */
-$article = findArticle($article_id);
+$article = $articleModel->find($article_id);
 
 /**
  * 4. Récupération des commentaires de l'article en question
  */
-$commentaires = findAllComments($article_id);
+$commentaires = $commentModel->findAllWithArticle($article_id);
 
 /**
  * 5. On affiche 

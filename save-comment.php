@@ -2,6 +2,12 @@
 
 require_once('libraries/utils.php');
 require_once('libraries/database.php');
+require_once('libraries/models/Article.php');
+require_once('libraries/models/Comment.php');
+
+$articleModel = new Article;
+$commentModel = new Comment;
+
 
 /**
  * CE FICHIER DOIT ENREGISTRER UN NOUVEAU COMMENTAIRE EST REDIRIGER SUR L'ARTICLE !
@@ -48,7 +54,7 @@ if (!$author || !$article_id || !$content) {
 }
 
 // 2. On vérifie que l'article existe
-$article = findArticle($article_id);
+$article = $articleModel->find($article_id);
 
 // Si rien n'est revenu, on fait une erreur
 if (!$article) {
@@ -56,7 +62,7 @@ if (!$article) {
 }
 
 // 3. Insertion du commentaire
-createComment($author, $content, $article_id);
+$commentModel->create($author, $content, $article_id);
 
 // 4. Redirection vers l'article en question :
-redirect('Location: article.php?id=' . $article_id);
+redirect('article.php?id=' . $article_id);
